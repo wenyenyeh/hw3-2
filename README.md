@@ -9,8 +9,8 @@
 
 **4.Streamlit 部署**：使用 Streamlit 將應用部署為網頁，並提供以下功能：</br>
 
-+在2D平面上顯示資料分佈和類別。</br>
-+以3D圖展示SVM的決策邊界，讓使用者更直觀地理解分類效果。</br>
++ 在2D平面上顯示資料分佈和類別。</br>
++ 以3D圖展示SVM的決策邊界，讓使用者更直觀地理解分類效果。</br>
 ![hw3-2](https://github.com/user-attachments/assets/f7a21c67-3c66-4c8c-9615-e67574577932)
 ![hw3-2](https://github.com/user-attachments/assets/82939570-bd80-4043-8656-e02f8f9fdd85)
 
