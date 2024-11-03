@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.svm import SVC
-from mpl_toolkits.mplot3d import Axes3D
 import streamlit as st
 
 # 生成2D資料集
@@ -12,6 +11,7 @@ variance = 10
 x1 = np.random.normal(mean, np.sqrt(variance), num_points)
 x2 = np.random.normal(mean, np.sqrt(variance), num_points)
 
+# 計算距離來標記類別
 distances = np.sqrt(x1**2 + x2**2)
 Y = np.where(distances < 10, 0, 1)
 X = np.column_stack((x1, x2))
@@ -42,13 +42,15 @@ x1_grid, x2_grid = np.meshgrid(x1_range, x2_range)
 grid = np.c_[x1_grid.ravel(), x2_grid.ravel()]
 z = svm.decision_function(grid).reshape(x1_grid.shape)
 
+# 繪製 3D 圖形
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
-ax.plot_surface(x1_grid, x2_grid, z, cmap='coolwarm', alpha=0.6)
-ax.scatter(x1[Y==0], x2[Y==0], Y[Y==0], color='blue', marker='o', label='Y=0')
-ax.scatter(x1[Y==1], x2[Y==1], Y[Y==1], color='red', marker='s', label='Y=1')
+ax.plot_surface(x1_grid, x2_grid, z, cmap='coolwarm', alpha=0.6, edgecolor='none')
+ax.scatter(x1[Y==0], x2[Y==0], np.zeros_like(x1[Y==0]), color='blue', marker='o', label='Y=0', zorder=5)
+ax.scatter(x1[Y==1], x2[Y==1], np.zeros_like(x1[Y==1]), color='red', marker='s', label='Y=1', zorder=5)
 ax.set_xlabel('x1')
 ax.set_ylabel('x2')
 ax.set_zlabel('Decision Function')
+ax.set_title('3D Decision Surface')
 ax.legend()
 st.pyplot(fig)
